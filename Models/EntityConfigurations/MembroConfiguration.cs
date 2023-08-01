@@ -18,6 +18,8 @@ namespace ipcsmembros.Models.EntityConfigurations
             
             builder.Property(x => x.Email)
                    .HasMaxLength(255);
+
+            builder.Property(x => x.DataNascimento);
         }
     }
 }
