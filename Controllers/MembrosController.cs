@@ -9,12 +9,14 @@ namespace ipcsmembros.Controllers
     {
         private readonly MembroContext _context;
 
+        private const int TAMANHO_PAGINA = 10;
+
         public MembrosController(MembroContext context)
         {
             _context = context;
         }
 
-        public IActionResult Index(string filtro)
+        public IActionResult Index(string filtro, int pagina = 1)
         {
             var membros = _context.Membros.Where(x => x.Nome.Contains(filtro) || x.Email.Contains(filtro))
                                           .Select(x => new ListarMembroViewModel
@@ -25,7 +27,9 @@ namespace ipcsmembros.Controllers
                                               DataNascimento = x.DataNascimento
                                           });
             ViewBag.Filtro = filtro;
-            return View(membros);
+            ViewBag.NumeroPagina = pagina;
+            ViewBag.TotalPaginas = Math.Ceiling((decimal)membros.Count() / TAMANHO_PAGINA);
+            return View(membros.Skip((pagina - 1) * TAMANHO_PAGINA).Take(TAMANHO_PAGINA));
         }
     }
 }
