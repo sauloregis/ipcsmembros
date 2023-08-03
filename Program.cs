@@ -1,9 +1,11 @@
+using ipcsmembros.Contexts;
 using Microsoft.EntityFrameworkCore.Design;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<MembroContext>();
 
 var app = builder.Build();
 

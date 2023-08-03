@@ -1,4 +1,6 @@
-﻿<section class="content-header">
+﻿@model IEnumerable<ipcsmembros.ViewModels.Membros.ListarMembrosViewModel>
+
+<section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -21,6 +23,15 @@
                                 <th style="width: 40px;"></th>
                             </tr>
                         </thread>
+                        <tbody>
+                            @foreach(var m in Model)
+                            {
+                               <tr>
+                                    <td>@m.Nome</td>
+                                    <td>@m.Email</td>
+                               </tr> 
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
