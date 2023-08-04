@@ -1,0 +1,36 @@
+﻿@model ipcsmembros.ViewModels.Membros.AdicionarMembroViewModel
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Cadastrar Membros</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="content">
+    <div class="row">
+        <div class="col-12">
+            <form asp-action="Adicionar">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Nome" class="control-label"></label>
+                            <input asp-asp-for="Nome" class="form-control">
+                        </div>
+
+                        <div class="Email">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-asp-for="Email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button class="btn btn-primary" type="submit">Salvar</button>
+                    </div>
+                </div>
+            </form>       
+        </div>
+    </div>
+</section>

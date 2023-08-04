@@ -31,5 +31,10 @@ namespace ipcsmembros.Controllers
             ViewBag.TotalPaginas = Math.Ceiling((decimal)membros.Count() / TAMANHO_PAGINA);
             return View(membros.Skip((pagina - 1) * TAMANHO_PAGINA).Take(TAMANHO_PAGINA));
         }
+
+        public IActionResult Adicionar()
+        {
+            return View();
+        }
     }
 }
