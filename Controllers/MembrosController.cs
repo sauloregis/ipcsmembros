@@ -41,6 +41,11 @@ namespace ipcsmembros.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Adicionar(AdicionarMembroViewModel dados)
         {
+            if(!ModelState.IsValid) 
+            {
+                return View(dados);
+            }
+
             var membro = new Membro
             {
                 Nome = dados.Nome,
