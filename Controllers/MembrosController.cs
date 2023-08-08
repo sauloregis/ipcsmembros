@@ -2,6 +2,9 @@
 using ipcsmembros.ViewModels.Membros;
 using Microsoft.AspNetCore.Mvc;
 using ipcsmembros.Models.Entities;
+using FluentValidation;
+using ipcsmembros.Validators.Membros;
+using FluentValidation.AspNetCore;
 
 namespace ipcsmembros.Controllers
 {
@@ -9,11 +12,14 @@ namespace ipcsmembros.Controllers
     {
         private readonly MembroContext _context;
 
+        private readonly IValidator<AdicionarMembroViewModel> _adicionarMembroValidator;
+
         private const int TAMANHO_PAGINA = 10;
 
-        public MembrosController(MembroContext context)
+        public MembrosController(MembroContext context, IValidator<AdicionarMembroViewModel> adicionarMembroValidator)
         {
             _context = context;
+            _adicionarMembroValidator = adicionarMembroValidator;
         }
 
         public IActionResult Index(string filtro, int pagina = 1)
@@ -41,8 +47,11 @@ namespace ipcsmembros.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Adicionar(AdicionarMembroViewModel dados)
         {
-            if(!ModelState.IsValid) 
+            var validacao = _adicionarMembroValidator.Validate(dados);
+
+            if(!validacao.IsValid) 
             {
+                validacao.AddToModelState(ModelState, string.Empty);
                 return View(dados);
             }
 

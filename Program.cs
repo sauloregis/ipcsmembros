@@ -1,11 +1,15 @@
+using FluentValidation;
 using ipcsmembros.Contexts;
+using ipcsmembros.Validators.Membros;
+using ipcsmembros.ViewModels.Membros;
 using Microsoft.EntityFrameworkCore.Design;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 builder.Services.AddDbContext<MembroContext>();
+builder.Services.AddScoped<IValidator<AdicionarMembroViewModel>, AdicionarMembroValidator>();  
 
 var app = builder.Build();
 
