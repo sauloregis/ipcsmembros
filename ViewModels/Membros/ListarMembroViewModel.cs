@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public string Nome { get; set; } = string.Empty; //atribuir valor padrão nulo pra não salvar sem nada 
-        public string Email { get; set; } = string.Empty;
+        public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
     }
 }

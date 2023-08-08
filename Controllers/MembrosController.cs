@@ -1,7 +1,7 @@
 ﻿using ipcsmembros.Contexts;
 using ipcsmembros.ViewModels.Membros;
 using Microsoft.AspNetCore.Mvc;
-using ipcsmembros.ViewModels.Membros;
+using ipcsmembros.Models.Entities;
 
 namespace ipcsmembros.Controllers
 {
@@ -35,6 +35,22 @@ namespace ipcsmembros.Controllers
         public IActionResult Adicionar()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Adicionar(AdicionarMembroViewModel dados)
+        {
+            var membro = new Membro
+            {
+                Nome = dados.Nome,
+                Email = dados.Email
+            };
+
+            _context.Membros.Add(membro);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
