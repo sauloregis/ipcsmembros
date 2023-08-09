@@ -85,5 +85,23 @@ namespace ipcsmembros.Controllers
 
             return NotFound();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar (int id, EditarMembroViewModel dados)
+        {
+            var membro = _context.Membros.Find (id);
+            
+            if(membro != null) 
+            {
+                membro.Nome = dados.Nome;
+                membro.Email = dados.Email;
+                _context.Membros.Update(membro);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return NotFound();
+        }
     }
 }
