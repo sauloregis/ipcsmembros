@@ -5,6 +5,7 @@ using ipcsmembros.Models.Entities;
 using FluentValidation;
 using ipcsmembros.Validators.Membros;
 using FluentValidation.AspNetCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace ipcsmembros.Controllers
 {
@@ -65,6 +66,24 @@ namespace ipcsmembros.Controllers
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Editar(int id) 
+        {
+            var membro = _context.Membros.Find(id);
+
+            if(membro != null)
+            {
+                return View(new EditarMembroViewModel
+                {
+                    Id = membro.Id,
+                    Nome = membro.Nome,
+                    Email = membro.Email
+                });
+                
+            }
+
+            return NotFound();
         }
     }
 }
