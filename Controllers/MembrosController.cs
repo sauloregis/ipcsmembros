@@ -14,13 +14,15 @@ namespace ipcsmembros.Controllers
         private readonly MembroContext _context;
 
         private readonly IValidator<AdicionarMembroViewModel> _adicionarMembroValidator;
+        private readonly IValidator<EditarMembroViewModel> _editarMembroValidator;
 
         private const int TAMANHO_PAGINA = 10;
 
-        public MembrosController(MembroContext context, IValidator<AdicionarMembroViewModel> adicionarMembroValidator)
+        public MembrosController(MembroContext context, IValidator<AdicionarMembroViewModel> adicionarMembroValidator, IValidator<EditarMembroViewModel> editarMembroValidator)
         {
             _context = context;
             _adicionarMembroValidator = adicionarMembroValidator;
+            _editarMembroValidator = editarMembroValidator;
         }
 
         public IActionResult Index(string filtro, int pagina = 1)
@@ -90,6 +92,14 @@ namespace ipcsmembros.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Editar (int id, EditarMembroViewModel dados)
         {
+            var validacao = _editarMembroValidator.Validate(dados);
+
+            if (!validacao.IsValid)
+            {
+                validacao.AddToModelState(ModelState, string.Empty);
+                return View(dados);
+            }
+
             var membro = _context.Membros.Find (id);
             
             if(membro != null) 
@@ -98,6 +108,7 @@ namespace ipcsmembros.Controllers
                 membro.Email = dados.Email;
                 _context.Membros.Update(membro);
                 _context.SaveChanges();
+
                 return RedirectToAction(nameof(Index));
             }
 

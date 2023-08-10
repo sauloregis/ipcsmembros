@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 builder.Services.AddDbContext<MembroContext>();
 builder.Services.AddScoped<IValidator<AdicionarMembroViewModel>, AdicionarMembroValidator>();  
+builder.Services.AddScoped<IValidator<EditarMembroViewModel>, EditarMembroValidator>();  
 
 var app = builder.Build();
 
