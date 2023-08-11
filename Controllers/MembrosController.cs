@@ -6,6 +6,7 @@ using FluentValidation;
 using ipcsmembros.Validators.Membros;
 using FluentValidation.AspNetCore;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace ipcsmembros.Controllers
 {
@@ -114,5 +115,40 @@ namespace ipcsmembros.Controllers
 
             return NotFound();
         }
+
+        public IActionResult Excluir(int id)
+        {
+            var membro = _context.Membros.Find(id);
+
+            if (membro != null)
+            {
+                return View(new ListarMembroViewModel
+                {
+                    Id = membro.Id,
+                    Nome = membro.Nome,
+                    Email = membro.Email
+                });
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Excluir(int id, EditarMembroViewModel dados)
+        {
+            var membro = _context.Membros.Find(id);
+
+            if (membro != null)
+            {
+                _context.Membros.Remove(membro);
+                _context.SaveChanges();
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return NotFound();
+        }
+
     }
 }
