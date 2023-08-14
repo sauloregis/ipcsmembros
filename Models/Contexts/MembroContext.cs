@@ -15,6 +15,7 @@ namespace ipcsmembros.Contexts
         }
 
         public DbSet<Membro> Membros => Set<Membro>();
+        public DbSet<Presbitero> Presbiteros => Set<Presbitero>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,6 +25,7 @@ namespace ipcsmembros.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new MembroConfiguration());
+            modelBuilder.ApplyConfiguration(new PresbiteroConfiguration());
         }
     }
 }
