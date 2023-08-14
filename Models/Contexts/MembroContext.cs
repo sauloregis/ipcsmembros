@@ -16,6 +16,7 @@ namespace ipcsmembros.Contexts
 
         public DbSet<Membro> Membros => Set<Membro>();
         public DbSet<Presbitero> Presbiteros => Set<Presbitero>();
+        public DbSet<Diacono> Diaconos => Set<Diacono>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
