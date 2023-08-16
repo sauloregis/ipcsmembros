@@ -28,11 +28,12 @@ namespace ipcsmembros.Controllers
 
         public IActionResult Index(string filtro, int pagina = 1)
         {
-            var membros = _context.Membros.Where(x => x.Nome.Contains(filtro) || x.Email.Contains(filtro))
+            var membros = _context.Membros.Where(x => x.Nome.Contains(filtro) || x.TipoMembro.Contains(filtro) || x.Email.Contains(filtro))
                                           .Select(x => new ListarMembroViewModel
                                           {
                                               Id = x.Id,
                                               Nome = x.Nome,
+                                              TipoMembro = x.TipoMembro,
                                               Email = x.Email,
                                               DataNascimento = x.DataNascimento
                                           });
@@ -62,7 +63,12 @@ namespace ipcsmembros.Controllers
             var membro = new Membro
             {
                 Nome = dados.Nome,
-                Email = dados.Email
+                Ativo = dados.Ativo,
+                Email = dados.Email,
+                Celular = dados.Celular,
+                Sexo = dados.Sexo,
+                TipoMembro = dados.TipoMembro,
+                DataNascimento = dados.DataNascimento
             };
 
             _context.Membros.Add(membro);
@@ -81,9 +87,13 @@ namespace ipcsmembros.Controllers
                 {
                     Id = membro.Id,
                     Nome = membro.Nome,
-                    Email = membro.Email
+                    Ativo = membro.Ativo,
+                    Email = membro.Email,
+                    Celular = membro.Celular,
+                    Sexo = membro.Sexo,
+                    TipoMembro = membro.TipoMembro,
+                    DataNascimento = membro.DataNascimento
                 });
-                
             }
 
             return NotFound();
@@ -106,7 +116,13 @@ namespace ipcsmembros.Controllers
             if(membro != null) 
             {
                 membro.Nome = dados.Nome;
+                membro.Ativo = dados.Ativo;
+                membro.Ativo = dados.Ativo;
                 membro.Email = dados.Email;
+                membro.Celular = dados.Celular;
+                membro.Sexo = dados.Sexo;
+                membro.TipoMembro = dados.TipoMembro;
+                membro.DataNascimento = dados.DataNascimento;
                 _context.Membros.Update(membro);
                 _context.SaveChanges();
 
