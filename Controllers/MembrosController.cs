@@ -101,7 +101,7 @@ namespace ipcsmembros.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Editar (int id, EditarMembroViewModel dados)
+        public IActionResult Editar(int id, EditarMembroViewModel dados)
         {
             var validacao = _editarMembroValidator.Validate(dados);
 
@@ -132,6 +132,7 @@ namespace ipcsmembros.Controllers
             return NotFound();
         }
 
+        [HttpGet]
         public IActionResult Excluir(int id)
         {
             var membro = _context.Membros.Find(id);
@@ -151,7 +152,7 @@ namespace ipcsmembros.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Excluir(int id, EditarMembroViewModel dados)
+        public IActionResult ConfirmarExclusao(int id)
         {
             var membro = _context.Membros.Find(id);
 
@@ -165,6 +166,5 @@ namespace ipcsmembros.Controllers
 
             return NotFound();
         }
-
     }
 }
