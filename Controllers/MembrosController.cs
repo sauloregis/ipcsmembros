@@ -117,7 +117,6 @@ namespace ipcsmembros.Controllers
             {
                 membro.Nome = dados.Nome;
                 membro.Ativo = dados.Ativo;
-                membro.Ativo = dados.Ativo;
                 membro.Email = dados.Email;
                 membro.Celular = dados.Celular;
                 membro.Sexo = dados.Sexo;
