@@ -23,44 +23,28 @@
                             <span asp-validation-for="Nome" class="text-danger"></span>
                         </div>
 
-                        @*<div class="Ativo">
-                            <label asp-for="Ativo" class="control-label"></label>
-                            <input asp-for="Ativo" class="form-control">
-                            <span asp-validation-for="Ativo" class="text-danger"></span>
-                        </div>*@
-
-                        @*<div class="gender-inputs">
-                            <div class="gender-title">
-                                <h6>Ativo</h6>
-                            </div>
-
-                            <div class="gender-group">
-                                <div class="gender-input">
-                                    <input id="Ativo" type="radio" name="gender">
-                                    <label for="Ativo">Ativo</label>
-                                </div>
-
-                                <div class="gender-input">
-                                    <input id="0" type="radio" name="gender">
-                                    <label for="male">Masculino</label>
-                                </div>
-                            </div>
-                        </div>*@
+                        <div class="Ativo">
+                            <label class="radio-option">
+                                <label asp-for="Ativo" class="control-label"></label>
+                                <input type="radio" name="Ativo" value="1" />
+                                <span class="option-label">Ativo</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="Ativo" value="0" />
+                                <span class="option-label">Inativo</span>
+                            </label>
+                        </div>
 
                         <div class="Sexo">
-                            <h6>Sexo</h6>
-
-                            <div class="Sexo">
-                                <div class="gender-input">
-                                    <input id="female" type="radio" name="gender">
-                                    <label for="female">Feminino</label>
-                                </div>
-
-                                <div class="gender-input">
-                                    <input id="male" type="radio" name="gender">
-                                    <label for="male">Masculino</label>
-                                </div>
-                            </div>
+                            <label class="radio-option">
+                            <label asp-for="Sexo" class="control-label"></label>
+                                <input type="radio" name="Sexo" value="M" />
+                                <span class="option-label">Masculino</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="Sexo" value="F" />
+                                <span class="option-label">Feminino</span>
+                            </label>
                         </div>
 
                         <div class="Email">
