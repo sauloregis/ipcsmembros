@@ -16,10 +16,23 @@
             <form asp-action="Adicionar">
                 <div class="card">
                     <div class="card-body">
+
                         <div class="form-group">
                             <label asp-for="Nome" class="control-label"></label>
                             <input asp-for="Nome" class="form-control">
                             <span asp-validation-for="Nome" class="text-danger"></span>
+                        </div>
+
+                        <div class="Ativo">
+                            <label class="radio-option">
+                                <label asp-for="Ativo" class="control-label"></label>
+                                <input type="radio" name="Ativo" value="1" />
+                                <span class="option-label">Ativo</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="Ativo" value="0" />
+                                <span class="option-label">Inativo</span>
+                            </label>
                         </div>
 
                         <div class="Email">

@@ -29,7 +29,7 @@ namespace ipcsmembros.Migrations
                 table: "Membros",
                 type: "nvarchar(11)",
                 maxLength: 11,
-                nullable: false,
+                nullable: true,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
