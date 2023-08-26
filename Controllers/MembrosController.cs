@@ -7,6 +7,7 @@ using ipcsmembros.Validators.Membros;
 using FluentValidation.AspNetCore;
 using System.ComponentModel.DataAnnotations;
 using System;
+using System.Text.RegularExpressions;
 
 namespace ipcsmembros.Controllers
 {
@@ -65,7 +66,7 @@ namespace ipcsmembros.Controllers
                 Nome = dados.Nome,
                 Ativo = dados.Ativo,
                 Email = dados.Email,
-                Celular = dados.Celular,
+                Celular = Regex.Replace(dados.Celular, "[^0-9]", ""),
                 Sexo = dados.Sexo,
                 TipoMembro = dados.TipoMembro,
                 DataNascimento = dados.DataNascimento
@@ -89,7 +90,7 @@ namespace ipcsmembros.Controllers
                     Nome = membro.Nome,
                     Ativo = membro.Ativo,
                     Email = membro.Email,
-                    Celular = membro.Celular,
+                    Celular = Regex.Replace(membro.Celular, "[^0-9]", ""),
                     Sexo = membro.Sexo,
                     TipoMembro = membro.TipoMembro,
                     DataNascimento = membro.DataNascimento
@@ -118,7 +119,7 @@ namespace ipcsmembros.Controllers
                 membro.Nome = dados.Nome;
                 membro.Ativo = dados.Ativo;
                 membro.Email = dados.Email;
-                membro.Celular = dados.Celular;
+                membro.Celular = Regex.Replace(dados.Celular, "[^0-9]", "");
                 membro.Sexo = dados.Sexo;
                 membro.TipoMembro = dados.TipoMembro;
                 membro.DataNascimento = dados.DataNascimento;

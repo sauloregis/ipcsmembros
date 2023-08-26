@@ -1,4 +1,6 @@
-﻿namespace ipcsmembros.ViewModels.Membros
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ipcsmembros.ViewModels.Membros
 {
     public class AdicionarMembroViewModel
     {
@@ -7,7 +9,10 @@
         public string Email { get; set; }
         public string? Celular { get; set; }
         public string Sexo { get; set; }
+        [Display(Name = "Tipo de Membro")]
         public string TipoMembro { get; set; }
+        [Display(Name = "Data de Nascimento")]
+        [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
     }
 }
