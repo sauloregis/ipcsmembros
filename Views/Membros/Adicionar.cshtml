@@ -1,4 +1,5 @@
-﻿@model ipcsmembros.ViewModels.Membros.AdicionarMembroViewModel
+﻿@using ipcsmembros.Enum;
+@model ipcsmembros.ViewModels.Membros.AdicionarMembroViewModel
 
 <section class="content-header">
     <div class="container-fluid">
@@ -60,11 +61,20 @@
                             <span asp-validation-for="Sexo" class="text-danger"></span>
                         </div>
 
-                        <div class="TipoMembro">
-                            <label asp-for="TipoMembro" class="control-label"></label>
+                        @* <div class="TipoMembro">
                             <input asp-for="TipoMembro" class="form-control">
+                            <label asp-for="TipoMembro" class="control-label"></label>
                             <span asp-validation-for="TipoMembro" class="text-danger"></span>
+                        </div> *@
+
+                        
+                        <div>
+                            <label asp-for="TipoMembro" class="form-label"></label>
+                            <select asp-for="TipoMembro" asp-items="Html.GetEnumSelectList<EnumTipoMembro>()" class="form-select">
+                                <option selected="selected" value="">Selecione o tipo de membro</option>
+                            </select>
                         </div>
+                        
 
                         <div class="DataNascimento">
                             <label asp-for="DataNascimento" class="control-label"></label>

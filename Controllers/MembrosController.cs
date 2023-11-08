@@ -1,12 +1,9 @@
-﻿using ipcsmembros.Contexts;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using ipcsmembros.Contexts;
+using ipcsmembros.Models.Entities;
 using ipcsmembros.ViewModels.Membros;
 using Microsoft.AspNetCore.Mvc;
-using ipcsmembros.Models.Entities;
-using FluentValidation;
-using ipcsmembros.Validators.Membros;
-using FluentValidation.AspNetCore;
-using System.ComponentModel.DataAnnotations;
-using System;
 using System.Text.RegularExpressions;
 
 namespace ipcsmembros.Controllers
@@ -29,12 +26,12 @@ namespace ipcsmembros.Controllers
 
         public IActionResult Index(string filtro, int pagina = 1)
         {
-            var membros = _context.Membros.Where(x => x.Nome.Contains(filtro) || x.TipoMembro.Contains(filtro) || x.Email.Contains(filtro))
+            var membros = _context.Membros.Where(x => x.Nome.Contains(filtro) || x.Email.Contains(filtro))
                                           .Select(x => new ListarMembroViewModel
                                           {
                                               Id = x.Id,
                                               Nome = x.Nome,
-                                              TipoMembro = x.TipoMembro,
+                                              //TipoMembro = (EnumTipoMembro)x.TipoMembro,
                                               Email = x.Email,
                                               DataNascimento = x.DataNascimento
                                           });

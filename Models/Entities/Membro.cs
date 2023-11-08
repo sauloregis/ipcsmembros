@@ -1,3 +1,5 @@
+using ipcsmembros.Enum;
+
 namespace ipcsmembros.Models.Entities
 {
     public class Membro
@@ -8,7 +10,7 @@ namespace ipcsmembros.Models.Entities
         public string Email { get; set;}
         public string? Celular { get; set; } = string.Empty;
         public string Sexo { get; set;}
-        public string TipoMembro { get; set;}
+        public EnumTipoMembro TipoMembro { get; set; }
         public DateTime DataNascimento { get; set; }
     }
 }
