@@ -52,7 +52,7 @@ namespace ipcsmembros.Controllers
         {
             var validacao = _adicionarMembroValidator.Validate(dados);
 
-            if(!validacao.IsValid) 
+            if (!validacao.IsValid)
             {
                 validacao.AddToModelState(ModelState, string.Empty);
                 return View(dados);
@@ -75,11 +75,11 @@ namespace ipcsmembros.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Editar(int id) 
+        public IActionResult Editar(int id)
         {
             var membro = _context.Membros.Find(id);
 
-            if(membro != null)
+            if (membro != null)
             {
                 return View(new EditarMembroViewModel
                 {
@@ -87,7 +87,7 @@ namespace ipcsmembros.Controllers
                     Nome = membro.Nome,
                     Ativo = membro.Ativo,
                     Email = membro.Email,
-                    Celular = Regex.Replace(membro.Celular, "[^0-9]", ""),
+                    Celular = !string.IsNullOrEmpty(membro.Celular) ? Regex.Replace(membro.Celular, "[^0-9]", "") : "",
                     Sexo = membro.Sexo,
                     TipoMembro = membro.TipoMembro,
                     DataNascimento = membro.DataNascimento
@@ -109,14 +109,14 @@ namespace ipcsmembros.Controllers
                 return View(dados);
             }
 
-            var membro = _context.Membros.Find (id);
-            
-            if(membro != null) 
+            var membro = _context.Membros.Find(id);
+
+            if (membro != null)
             {
                 membro.Nome = dados.Nome;
                 membro.Ativo = dados.Ativo;
                 membro.Email = dados.Email;
-                membro.Celular = Regex.Replace(dados.Celular, "[^0-9]", "");
+                membro.Celular = !string.IsNullOrEmpty(membro.Celular) ? Regex.Replace(membro.Celular, "[^0-9]", "") : "";
                 membro.Sexo = dados.Sexo;
                 membro.TipoMembro = dados.TipoMembro;
                 membro.DataNascimento = dados.DataNascimento;

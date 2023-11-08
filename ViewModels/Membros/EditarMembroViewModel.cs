@@ -11,8 +11,10 @@ namespace ipcsmembros.ViewModels.Membros
         public string Email { get; set; }
         public string Celular { get; set; }
         public string Sexo { get; set; }
+
         [Display(Name = "Tipo de Membro")]
         public EnumTipoMembro TipoMembro { get; set; }
+
         [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
