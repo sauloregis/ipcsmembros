@@ -24,16 +24,21 @@
                             <span asp-validation-for="Nome" class="text-danger"></span>
                         </div>
 
-                        <div class="Ativo">
-                            <label class="radio-option">
-                                <label asp-for="Ativo" class="control-label"></label>
-                                <input type="radio" name="Ativo" value="1" />
-                                <span class="option-label">Ativo</span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="Ativo" value="0" />
-                                <span class="option-label">Inativo</span>
-                            </label>
+                        <div class="form-group">
+                            <label asp-for="Ativo" class="form-label"></label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Ativo" id="flexRadioDefault1" value="1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Ativo
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Ativo" id="flexRadioDefault2" checked value="0">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Inativo
+                                </label>
+                                <span asp-validation-for="Sexo" class="text-danger"></span>
+                            </div>
                         </div>
 
                         <div class="Email">
@@ -48,22 +53,26 @@
                             <span asp-validation-for="Celular" class="text-danger"></span>
                         </div>
 
-                        <div class="Sexo">
-                            <label class="radio-option">
-                                <label asp-for="Sexo" class="control-label"></label>
-                                <input type="radio" name="Sexo" value="M" />
-                                <span class="option-label">Masculino</span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="Sexo" value="F" />
-                                <span class="option-label">Feminino</span>
-                            </label>
-                            <span asp-validation-for="Sexo" class="text-danger"></span>
+                        <div class="form-group">
+                            <label asp-for="Sexo" class="form-label"></label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Sexo" id="flexRadioDefault1" value="M">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Masculino
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Sexo" id="flexRadioDefault2" checked value="F">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Feminino
+                                </label>
+                                <span asp-validation-for="Sexo" class="text-danger"></span>
+                            </div>
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label asp-for="TipoMembro" class="form-label"></label>
-                            <select asp-for="TipoMembro" asp-items="Html.GetEnumSelectList<EnumTipoMembro>()" class="form-select">
+                            <select asp-for="TipoMembro" asp-items="Html.GetEnumSelectList<EnumTipoMembro>()" class="form-control">
                                 <option selected="selected" value="">Tipo de membro</option>
                             </select>
                         </div>
