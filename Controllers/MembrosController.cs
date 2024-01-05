@@ -61,7 +61,7 @@ namespace ipcsmembros.Controllers
             var membro = new Membro
             {
                 Nome = dados.Nome,
-                Ativo = dados.Ativo,
+                Ativo = true,
                 Email = dados.Email,
                 Celular = Regex.Replace(dados.Celular, "[^0-9]", ""),
                 Sexo = dados.Sexo,
@@ -116,7 +116,7 @@ namespace ipcsmembros.Controllers
                 membro.Nome = dados.Nome;
                 membro.Ativo = dados.Ativo;
                 membro.Email = dados.Email;
-                membro.Celular = !string.IsNullOrEmpty(membro.Celular) ? Regex.Replace(membro.Celular, "[^0-9]", "") : "";
+                membro.Celular = !string.IsNullOrEmpty(dados.Celular) ? Regex.Replace(dados.Celular, "[^0-9]", "") : "";
                 membro.Sexo = dados.Sexo;
                 membro.TipoMembro = dados.TipoMembro;
                 membro.DataNascimento = dados.DataNascimento;

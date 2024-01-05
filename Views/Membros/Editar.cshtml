@@ -2,100 +2,105 @@
 @model ipcsmembros.ViewModels.Membros.EditarMembroViewModel
 
 <section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Editar Membro</h1>
-            </div>
-        </div>
-    </div>
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Editar Membro</h1>
+			</div>
+		</div>
+	</div>
 </section>
 
 <div class="content">
-    <div class="row">
-        <div class="col-12">
-            <form asp-action="Editar">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-                        <div class="form-group">
-                            <label asp-for="Nome" class="control-label"></label>
-                            <input asp-for="Nome" class="form-control">
-                            <span asp-validation-for="Nome" class="text-danger"></span>
-                        </div>
+	<div class="row">
+		<div class="col-12">
+			<form asp-action="Editar">
+				<div class="card">
+					<div class="card-body">
+						<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+						<div class="form-group">
+							<label asp-for="Nome" class="control-label"></label>
+							<input asp-for="Nome" class="form-control">
+							<span asp-validation-for="Nome" class="text-danger"></span>
+						</div>
 
-                        <div class="form-group">
-                            <label asp-for="Ativo" class="form-label"></label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Ativo" id="flexRadioDefault1" value="1">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Ativo
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Ativo" id="flexRadioDefault2" checked value="0">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Inativo
-                                </label>
-                                <span asp-validation-for="Sexo" class="text-danger"></span>
-                            </div>
-                        </div>
+						@{
+							var checado = Model.Ativo ? "checked" : "";
+							var Naochecado = Model.Ativo ? "" : "checked";
+						}
+						<div class="form-group">
+							<label asp-for="Ativo" class="form-label"></label>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="Ativo" value="True" id="flexRadioDefault1" @checado>
+								<label class="form-check-label" for="flexRadioDefault1">
+									Ativo
+								</label>
+							</div>
+							<div class="form-check">
 
-                        <div class="form-group">
-                            <label asp-for="Sexo" class="form-label"></label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Sexo" id="flexRadioDefault1" value="M">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Masculino
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Sexo" id="flexRadioDefault2" checked value="F">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Feminino
-                                </label>
-                                <span asp-validation-for="Sexo" class="text-danger"></span>
-                            </div>
-                        </div>
+								<input name="Ativo" class="form-check-input" type="radio" value="False" id="flexRadioDefault2" @Naochecado>
+								<label class="form-check-label" for="flexRadioDefault2">
+									Inativo
+								</label>
+								<span asp-validation-for="Sexo" class="text-danger"></span>
+							</div>
+						</div>
 
-                        <div class="Email">
-                            <label asp-for="Email" class="control-label"></label>
-                            <input asp-for="Email" class="form-control">
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
+						<div class="form-group">
+							<label asp-for="Sexo" class="form-label"></label>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="Sexo" id="flexRadioDefault1" value="M" @(Model.Sexo.Equals("M")?"checked":"")>
+								<label class="form-check-label" for="flexRadioDefault1">
+									Masculino
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="Sexo" id="flexRadioDefault2" value="F" @(Model.Sexo.Equals("F")?"checked":"")>
+								<label class="form-check-label" for="flexRadioDefault2">
+									Feminino
+								</label>
+								<span asp-validation-for="Sexo" class="text-danger"></span>
+							</div>
+						</div>
 
-                        <div class="Celular">
-                            <label asp-for="Celular" class="control-label"></label>
-                            <input asp-for="Celular" class="form-control" mask="(99)9-9999-9999">
-                            <span asp-validation-for="Celular" class="text-danger"></span>
-                        </div>
+						<div class="Email">
+							<label asp-for="Email" class="control-label"></label>
+							<input asp-for="Email" class="form-control">
+							<span asp-validation-for="Email" class="text-danger"></span>
+						</div>
 
-                        <div class="form-group">
-                            <label asp-for="TipoMembro" class="form-label"></label>
-                            <select asp-for="TipoMembro" asp-items="Html.GetEnumSelectList<EnumTipoMembro>()" class="form-control">
-                                <option selected="selected" value="">Tipo de membro</option>
-                            </select>
-                        </div>
+						<div class="Celular">
+							<label asp-for="Celular" class="control-label"></label>
+							<input asp-for="Celular" class="form-control"mask="(99) 99999-9999">
+							<span asp-validation-for="Celular" class="text-danger"></span>
+						</div>
 
-                        <div  class="DataNascimento">
-                            <label asp-for="DataNascimento" class="control-label"></label>
-                            <input asp-for="DataNascimento" class="form-control">
-                            <span asp-validation-for="DataNascimento" class="text-danger"></span>
-                        </div>
+						<div class="form-group">
+							<label asp-for="TipoMembro" class="form-label"></label>
+							<select asp-for="TipoMembro" asp-items="Html.GetEnumSelectList<EnumTipoMembro>()" class="form-control">
+								<option selected="selected" value="">Tipo de membro</option>
+							</select>
+						</div>
 
-                    </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col">
-                                <a href="/membros/excluir/@Model.Id" class="btn btn-danger">Excluir</a>
-                            </div>
-                            <div class="col text-right">
-                                <button class="btn btn-primary" type="submit">Salvar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+						<div class="DataNascimento">
+							<label asp-for="DataNascimento" class="control-label"></label>
+							<input asp-for="DataNascimento" class="form-control">
+							<span asp-validation-for="DataNascimento" class="text-danger"></span>
+						</div>
+
+					</div>
+					<div class="card-footer">
+						<div class="row">
+							<div class="col">
+								<a href="/membros/excluir/@Model.Id" class="btn btn-danger">Excluir</a>
+							</div>
+							<div class="col text-right">
+								<button class="btn btn-primary" type="submit">Salvar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
