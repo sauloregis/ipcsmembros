@@ -20,3 +20,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.AtalhoAdicionarMembro {
+    color: black !important;
+}
+
+    .AtalhoAdicionarMembro:hover {
+        color: #0056b3 !important;
+    }
