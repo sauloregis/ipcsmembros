@@ -31,7 +31,6 @@ namespace ipcsmembros.Controllers
                                           {
                                               Id = x.Id,
                                               Nome = x.Nome,
-                                              //TipoMembro = (EnumTipoMembro)x.TipoMembro,
                                               Email = x.Email,
                                               DataNascimento = x.DataNascimento
                                           });
