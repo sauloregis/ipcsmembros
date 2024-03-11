@@ -2,40 +2,33 @@
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ipcsmembros.Models;
 
 namespace ipcsmembros.Controllers
 {
     public class AccountController : Controller
     {
-        public IActionResult Login(string returnUrl = "/")
+        public IActionResult Index()
         {
-            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string username, string password, string returnUrl = "/")
+        public IActionResult Login(LoginModel loginModel)
         {
-            // Lógica de autenticação aqui
-            if (username == "usuario" && password == "senha")
+            try
             {
-                var claims = new[] { new Claim(ClaimTypes.Name, username) };
-                var identity = new ClaimsIdentity(claims, "login");
-                var principal = new ClaimsPrincipal(identity);
-
-                await HttpContext.SignInAsync(principal);
-
-                return LocalRedirect(returnUrl);
+                if (ModelState.IsValid)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                return View("Index");
             }
-
-            ViewBag.ErrorMessage = "Credenciais inválidas";
-            return View();
-        }
-
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            catch (Exception erro) 
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos realizar seu login. Detalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }
