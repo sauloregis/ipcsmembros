@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authentication;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using ipcsmembros.Models;
+﻿using ipcsmembros.Models.Login;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ipcsmembros.Controllers
 {
